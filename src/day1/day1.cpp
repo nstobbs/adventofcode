@@ -11,8 +11,8 @@ std::vector<int> listTwo;
 
 int main()
 {
+    // --- Part One ---
     // Read In the Input Puzzle List
-    // Format list into two different arrays of Ints
     std::ifstream inputFile("input.txt");
     if (inputFile)
     {
@@ -22,6 +22,7 @@ int main()
             input.push_back(value);
         }
     }
+    // Format list into two different arrays of Ints
     for (int i = 0; i < input.size(); i++)
     {
         if (i % 2 == 0)
@@ -31,36 +32,38 @@ int main()
             listOne.push_back(input[i]);
         }
     }
+
     // Sort both list of Array
     std::sort(listOne.begin(), listOne.end());
     std::sort(listTwo.begin(), listTwo.end());
 
-    // Then go throught each item in the list and take away each pair from
-    // Add the final result into result var
-    // return the final result
+    // Then go through each item in the list and take away each pair from
     int result = 0;
     for (int i = 0; i < listOne.size(); i++)
     {
         int value = abs(listOne[i] - listTwo[i]);
-        result = result + value;
+        // Add the final result into result var
+        result += value;
     }
+    // return the final result
     std::cout << "Final Result is: " << result << std::endl;
 
     // --- Part Two ---
-    // Go throght listOne, check how many times that number apperas in listTwo
-    // If the number apperas in list two, increase found counter
-    // Once we have go throught the whole list, times that number by the counter
     int similarityScore = 0;
+
+    // Go through listOne, check how many times that number appears in listTwo
     for (int i = 0; i < listOne.size(); i++)
     {
         int count = 0;
         int searchNumber = listOne[i];
         for (int j = 0; j < listTwo.size(); j++)
         {
+            // If the number appears in list two, increase found counter
             if (listTwo[j] == searchNumber)
                 count++;
         }
-        similarityScore = similarityScore + (searchNumber * count);
+        // Once we have gone throughout the whole list, times that number by the counter
+        similarityScore += searchNumber * count;
     }
 
     std::cout << "similarityScore is: " << similarityScore << std::endl;
