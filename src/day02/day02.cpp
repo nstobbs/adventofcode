@@ -10,8 +10,8 @@ int main()
 {
     // --- Part One ---
     // Read the File For Every Line and add it to a Vector Called Reports;
-    std::ifstream inputFile("../../src/day02/input.txt");
-    //std::ifstream inputFile("../../src/day02/inputTestCase.txt");
+    //std::ifstream inputFile("../../src/day02/input.txt");
+    std::ifstream inputFile("../../src/day02/inputTestCase.txt");
     std::string line;
     std::vector<std::vector<int>> reports;
     int safeReports = 0;
@@ -44,14 +44,13 @@ int main()
             std::cout << reports[i][k] << " ";
         }
         std::cout << std::endl;
-
+        bool isIncreasing = false;
+        bool locked = false;
+        bool safe = true;
         for (int j = 0; j < (reports[i].size()-1); j++)
         {  
            int left = reports[i][j];
            int right = reports[i][j+1];
-           bool isIncreasing = false;
-           bool locked = false;
-           bool safe = true;
            std::cout << "LEFT: " << left << " RIGHT: " << right << std::endl;
          // Check if we are increasing or not
            if (left < right && locked == false)
